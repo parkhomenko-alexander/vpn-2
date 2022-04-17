@@ -7,6 +7,8 @@ class DataAnalyzer:
         self.file_name = file_name
         self.streamer = NFStreamer(source = file_name)
         self.streamer = self.streamer.to_pandas(columns_to_anonymize=[])
+        self.start = datetime.fromtimestamp(self.streamer['bidirectional_first_seen_ms'].min()/1000.0).strftime('%Y-%m-%d %H:%M:%S')
+        self.end = datetime.fromtimestamp(self.streamer['bidirectional_last_seen_ms'].max()/1000.0).strftime('%Y-%m-%d %H:%M:%S')
         self.columns=['src_ip', 'dst_ip', 'bidirectional_packets', 'bidirectional_bytes', 'application_name', 'application_category_name']
         self.unique_columns =  ['src_ip','dst_ip', 'application_name']
 
@@ -15,9 +17,7 @@ class DataAnalyzer:
             del self.streamer[c]
 
     def capturing_time(self):
-      start = datetime.fromtimestamp(self.streamer['bidirectional_first_seen_ms'].min()/1000.0).strftime('%Y-%m-%d %H:%M:%S')
-      end = datetime.fromtimestamp(self.streamer['bidirectional_last_seen_ms'].max()/1000.0).strftime('%Y-%m-%d %H:%M:%S')
-      return start, end
+      return self.start, self.end
     
     def get_data(self):
       return self.streamer.to_markdown()
@@ -49,6 +49,8 @@ class DataAnalyzer:
             f.write(f"#### 2.1    Вывод информации о данных:['src_ip','dst_ip','bidirectional_packets','bidirectional_bytes','application_name','application_category_name']:\n {self.get_data()}\n\n")
             f.write(f"#### 2.2    Уникальные значения ['src_ip']:\n {self.get_unique_data('src_ip')}\n\n")
             f.write(f"#### 3   Время захвата: {self.capturing_time()}\n\n")
+            f.write(f"#### 4   Полeзная информация:\n {self.helpful_information()}\n\n")
+
 
 
 
