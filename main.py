@@ -60,4 +60,5 @@ class DataAnalyzer:
 
 if __name__ == '__main__':
     streamer = DataAnalyzer('data/all_3.pcapng')
+    
     streamer.get_report()
