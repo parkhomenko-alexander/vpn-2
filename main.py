@@ -20,7 +20,7 @@ class DataAnalyzer:
       return start, end
     
     def get_data(self):
-      return self.streamer.to_markdown()
+      return self.streamer
 
     def get_unique_data(self, column):
       res_df = self.streamer.copy(deep=True)
@@ -47,7 +47,7 @@ class DataAnalyzer:
             f.write(f"####  Файл захвата: [{self.file_name}]({self.file_name})\n\n")
             f.write(f"#### 1    Наличие VPN: {self.vpn_used()}\n\n")
             f.write(f"#### 2.1  Вывод информации о данных:['src_ip','dst_ip','bidirectional_packets','bidirectional_bytes','application_name','application_category_name']:\n {self.get_data()}\n\n")
-            f.write(f"####2.2 Уникальные значения ['src_ip']:\n {self.get_unique_data('src_ip')}\n\n")
+            f.write(f"#### 2.2 Уникальные значения ['src_ip']:\n {self.get_unique_data('src_ip')}\n\n")
 
 
 
