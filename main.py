@@ -20,7 +20,7 @@ class DataAnalyzer:
       return start, end
     
     def get_data(self):
-      return self.streamer
+      return self.streamer.to_markdown()
 
     def get_unique_data(self, column):
       res_df = self.streamer.copy(deep=True)
