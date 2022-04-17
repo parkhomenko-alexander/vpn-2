@@ -43,7 +43,7 @@ class DataAnalyzer:
     
     def get_report(self):
         with open('README.md', 'w',  encoding='utf-8') as f:
-            f.write("#  Отчет по лабораторной работе 3.2\n### Выполнили:\n #### Губенко Иван #### Пархоменко Александр #### Чуйко Михаил\n\n")
+            f.write("#  Отчет по лабораторной работе 3.2\n### Выполнили:\n #### Губенко Иван  #### Пархоменко Александр #### Чуйко Михаил\n\n")
             f.write(f"####  Файл захвата: [{self.file_name}]({self.file_name})\n\n")
             f.write(f"#### 1    Наличие VPN: {self.vpn_used()}\n\n")
             f.write(f"#### 2.1  Вывод информации о данных:['src_ip','dst_ip','bidirectional_packets','bidirectional_bytes','application_name','application_category_name']: {self.get_data()}\n\n")
