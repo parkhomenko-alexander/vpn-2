@@ -1,5 +1,7 @@
 from nfstream import NFStreamer
 from datetime import datetime
+from tabulate import tabulate
+
 
 class DataAnalyzer:
     def __init__(self, file_name):
@@ -19,7 +21,7 @@ class DataAnalyzer:
       return start, end
     
     def get_data(self):
-      return self.streamer.to_markdown()
+      return tabulate(self.streamer)
 
     def get_unique_data(self, column):
       res_df = self.streamer.copy(deep=True)
